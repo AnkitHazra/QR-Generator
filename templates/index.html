@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>QR Link Generator</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<main class="container">
+<h1>QR Link Generator</h1>
+<form method="post" id="qrForm">
+<label for="link">Paste a link</label>
+<input id="link" name="link" type="text" placeholder="https://example.com" autocomplete="off">
+<div class="actions">
+<button type="submit">Generate QR</button>
+<button type="button" id="clearBtn">Clear</button>
+</div>
+</form>
+
+
+<div id="result">
+{% if error %}
+<p class="error">{{ error }}</p>
+{% endif %}
+
+
+{% if qr_data %}
+<h2>Your QR code</h2>
+<img id="qrImg" src="{{ qr_data }}" alt="QR code">
+<div class="result-actions">
+<a id="downloadLink" href="{{ qr_data }}" download="qr.png">Download PNG</a>
+<button id="copyBtn">Copy Image URL</button>
+</div>
+{% endif %}
+</div>
+</main>
+<script src="/static/script.js"></script>
+</body>
+</html>
